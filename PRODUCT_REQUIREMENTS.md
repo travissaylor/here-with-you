@@ -1,15 +1,19 @@
 # Product Requirements Document (PRD)
 
 ## Product Name
+
 Here With You
 
 ## Version
+
 v1 Web
 
 ## Owner
+
 Travis Saylor
 
 ## Platform
+
 Mobile-first web application  
 Framework: **Next.js (App Router) + TypeScript**  
 Deployment: Static site (Vercel)  
@@ -64,15 +68,18 @@ No notifications, no auto-launch behavior.
 Reduce nervous system activation before presenting emotional content.
 
 **UI**
+
 - Full-screen calm background
 - Centered expanding/contracting circle animation
 - Minimal supportive copy
 
 **Copy**
+
 - “Let’s slow things down together”
 - “Start when you’re ready”
 
 **Behavior**
+
 - User taps to start animation
 - Circle expands on inhale and contracts on exhale
 - Fixed pacing (recommended: 4s inhale, 6s exhale)
@@ -81,6 +88,7 @@ Reduce nervous system activation before presenting emotional content.
 - User can skip at any time
 
 **Exit**
+
 - Auto-advance after animation completes or skip is tapped
 
 ---
@@ -91,19 +99,23 @@ Reduce nervous system activation before presenting emotional content.
 Offer connection with minimal cognitive load.
 
 **UI**
+
 - Grid of 3–5 people max
 - Each card includes:
   - Photo
   - First name only
 
 **Primary Action**
+
 - “Play one for me” (highlighted)
   - Randomly selects a message
 
 **Secondary Action**
+
 - Tap a specific person
 
 **Copy**
+
 - “Who would you like support from right now?”
 - Subtext: “Everyone here wanted you to hear this”
 
@@ -115,15 +127,18 @@ Offer connection with minimal cognitive load.
 Deliver emotional support through real human connection.
 
 **Content**
+
 - Audio recordings only (20–45 seconds)
 - No advice, no fixing
 
 **UI**
+
 - Photo and name of the person
 - Text: “Someone who loves you wanted you to hear this”
 - Controls: Play / Pause
 
 **Behavior**
+
 - Audio playback requires a user gesture (mobile browser constraint)
 - Attempt autoplay if allowed, fallback to clear Play button
 - No scrubbing required
@@ -136,18 +151,22 @@ Deliver emotional support through real human connection.
 Avoid abrupt emotional drop-off and signal completion.
 
 **UI**
+
 - Calm background
 - Minimal copy
 
 **Copy**
+
 - “Take one more breath”
 - Optional: “You’re not alone”
 
 **Actions**
+
 - Button: “Listen to another message”
 - Button: “I’m done for now”
 
 **Behavior**
+
 - “Listen to another message” returns to Screen 2
 - “I’m done for now” exits flow (returns to home or closes tab)
 
@@ -158,6 +177,7 @@ Avoid abrupt emotional drop-off and signal completion.
 ### Contributor Guidance
 
 When collecting recordings from friends and family:
+
 - Speak calmly and naturally
 - Keep messages short (20–45 seconds)
 - No advice, problem-solving, or platitudes
@@ -181,25 +201,30 @@ Example tone:
 ## 6. Technical Requirements
 
 ### Framework
+
 - Next.js (App Router)
 - TypeScript
 - React
 
 ### Architecture
+
 - Static site generation
 - No backend
 - No authentication
 - No external APIs
 
 ### Asset Storage
+
 - Audio and images stored in the repository
 - Served from the app at runtime
 - Content changes require redeploy
 
 ### Hosting
+
 - Vercel static deployment
 
 ### Audio Constraints
+
 - Must comply with mobile browser autoplay restrictions
 - Clear user-initiated playback controls
 - Graceful fallback if autoplay is blocked
