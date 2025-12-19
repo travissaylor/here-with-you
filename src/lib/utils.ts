@@ -42,6 +42,26 @@ export function formatDuration(seconds: number): string {
 }
 
 /**
+ * Find a contributor and message by their IDs
+ * Used for validating URL parameters in playback page
+ */
+export function findContributorAndMessage(
+  contributorId: string | null,
+  messageId: string | null,
+  contributors: Contributor[]
+): { contributor: Contributor; message: Message } | null {
+  if (!contributorId || !messageId) return null;
+
+  const contributor = contributors.find(c => c.id === contributorId);
+  if (!contributor) return null;
+
+  const message = contributor.messages.find(m => m.id === messageId);
+  if (!message) return null;
+
+  return { contributor, message };
+}
+
+/**
  * Classname utility for conditional classes with Tailwind merge
  */
 export function cn(...inputs: ClassValue[]): string {
