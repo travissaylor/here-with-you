@@ -64,67 +64,81 @@ export const CONTENT = {
  */
 export const MOCK_CONTRIBUTORS: Contributor[] = [
   {
-    id: 'contributor-test',
+    id: 'travis',
     name: 'Travis',
     photoPath: '/images/contributors/travis.svg',
     messages: [
       {
-        id: 'msg-test-1',
-        contributorId: 'contributor-test',
+        id: 'travis-test',
+        contributorId: 'travis',
         audioPath: '/audio/messages/travis_test.m4a',
+        duration: 5,
       },
     ],
   },
   {
-    id: 'contributor-1',
-    name: 'Sarah',
-    photoPath: '/images/contributors/sarah.svg',
-    messages: [
-      {
-        id: 'msg-1-1',
-        contributorId: 'contributor-1',
-        audioPath: '/audio/messages/sarah-1.mp3',
-        duration: 25,
-      },
-    ],
-  },
-  {
-    id: 'contributor-2',
-    name: 'Alex',
-    photoPath: '/images/contributors/alex.svg',
-    messages: [
-      {
-        id: 'msg-2-1',
-        contributorId: 'contributor-2',
-        audioPath: '/audio/messages/alex-1.mp3',
-        duration: 30,
-      },
-    ],
-  },
-  {
-    id: 'contributor-3',
+    id: 'mom',
     name: 'Mom',
     photoPath: '/images/contributors/mom.svg',
     messages: [
       {
-        id: 'msg-3-1',
-        contributorId: 'contributor-3',
-        audioPath: '/audio/messages/mom-1.mp3',
-        duration: 35,
+        id: 'mom-test',
+        contributorId: 'mom',
+        audioPath: '/audio/messages/travis_test.m4a',
+        duration: 5,
       },
     ],
   },
   {
-    id: 'contributor-4',
-    name: 'Jamie',
-    photoPath: '/images/contributors/jamie.svg',
+    id: 'dad',
+    name: 'Dad',
+    photoPath: '/images/contributors/dad.svg',
     messages: [
       {
-        id: 'msg-4-1',
-        contributorId: 'contributor-4',
-        audioPath: '/audio/messages/jamie-1.mp3',
-        duration: 28,
+        id: 'dad-test',
+        contributorId: 'dad',
+        audioPath: '/audio/messages/travis_test.m4a',
+        duration: 5,
       },
     ],
   },
+  {
+    id: 'elizabeth',
+    name: 'Elizabeth',
+    photoPath: '/images/contributors/elizabeth.svg',
+    messages: [
+      {
+        id: 'elizabeth-test',
+        contributorId: 'elizabeth',
+        audioPath: '/audio/messages/travis_test.m4a',
+        duration: 5,
+      },
+    ],
+  },
+  {
+    id: 'caroline',
+    name: 'Caroline',
+    photoPath: '/images/contributors/caroline.svg',
+    messages: [
+      {
+        id: 'caroline-test',
+        contributorId: 'caroline',
+        audioPath: '/audio/messages/travis_test.m4a',
+        duration: 5,
+      },
+    ],
+  },
+  {
+    id: "cheyenne",
+    name: "Cheyenne",
+    photoPath: "/images/contributors/cheyenne.svg",
+    messages: [
+      {
+        id: "cheyenne-test",
+        contributorId: "cheyenne",
+        audioPath: "/audio/messages/travis_test.m4a",
+        duration: 5,
+      },
+    ],
+  }
 ] as const;

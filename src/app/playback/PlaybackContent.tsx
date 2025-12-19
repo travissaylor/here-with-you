@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import MessagePlayback from '@/components/screens/MessagePlayback';
 import { MOCK_CONTRIBUTORS, ROUTES } from '@/lib/constants';
 import { findContributorAndMessage } from '@/lib/utils';
@@ -9,7 +9,6 @@ import { findContributorAndMessage } from '@/lib/utils';
 export default function PlaybackContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [isValidating, setIsValidating] = useState(true);
 
   const contributorId = searchParams.get('contributor');
   const messageId = searchParams.get('message');
@@ -25,8 +24,6 @@ export default function PlaybackContent() {
       setTimeout(() => {
         router.replace(ROUTES.CHOOSE_SUPPORT);
       }, 1500);
-    } else {
-      setIsValidating(false);
     }
   }, [result, router]);
 
@@ -36,10 +33,6 @@ export default function PlaybackContent() {
         <p className="text-gray-600">Message not found. Redirecting...</p>
       </div>
     );
-  }
-
-  if (isValidating) {
-    return null;
   }
 
   return (
