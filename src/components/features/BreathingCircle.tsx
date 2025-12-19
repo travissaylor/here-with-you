@@ -33,7 +33,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
     }, CYCLE_DURATION);
 
     return () => clearInterval(cycleInterval);
-  }, [isAnimating, cycles, onComplete]);
+  }, [isAnimating, cycles, onComplete, CYCLE_DURATION]);
 
   const handleStart = () => {
     setIsAnimating(true);
@@ -45,7 +45,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
   };
 
   return (
-    <div className="relative flex items-center justify-center w-full min-h-[400px]">
+    <div className="relative flex items-center justify-center w-full min-h-400">
       {!isAnimating ? (
         <button
           className="flex justify-center items-center"
