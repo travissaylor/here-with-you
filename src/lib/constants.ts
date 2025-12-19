@@ -64,6 +64,18 @@ export const CONTENT = {
  */
 export const MOCK_CONTRIBUTORS: Contributor[] = [
   {
+    id: 'contributor-test',
+    name: 'Travis',
+    photoPath: '/images/contributors/travis.svg',
+    messages: [
+      {
+        id: 'msg-test-1',
+        contributorId: 'contributor-test',
+        audioPath: '/audio/messages/travis_test.m4a',
+      },
+    ],
+  },
+  {
     id: 'contributor-1',
     name: 'Sarah',
     photoPath: '/images/contributors/sarah.svg',

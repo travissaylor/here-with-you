@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import GroundingScreen from '@/components/screens/GroundingScreen';
 import ChooseSupport from '@/components/screens/ChooseSupport';
+import MessagePlayback from '@/components/screens/MessagePlayback';
 import { MOCK_CONTRIBUTORS } from '@/lib/constants';
 import type { ScreenState, Message, Contributor } from '@/lib/types';
 
@@ -18,8 +19,12 @@ export default function Home() {
   const handleSelectMessage = (message: Message, contributor: Contributor) => {
     setSelectedMessage(message);
     setSelectedContributor(contributor);
-    // TODO: Navigate to playback screen when implemented
-    console.log('Selected message:', message, 'from contributor:', contributor);
+    setCurrentScreen('playback');
+  };
+
+  const handlePlaybackComplete = () => {
+    // TODO: Navigate to soft-landing screen when implemented
+    setCurrentScreen('soft-landing');
   };
 
   return (
@@ -35,7 +40,15 @@ export default function Home() {
         />
       )}
 
-      {/* TODO: Add playback and soft-landing screens */}
+      {currentScreen === 'playback' && selectedMessage && selectedContributor && (
+        <MessagePlayback
+          message={selectedMessage}
+          contributor={selectedContributor}
+          onComplete={handlePlaybackComplete}
+        />
+      )}
+
+      {/* TODO: Add soft-landing screen */}
     </main>
   );
 }
