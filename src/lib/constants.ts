@@ -3,6 +3,8 @@
  * Based on Product Requirements Document specifications
  */
 
+import type { Contributor } from './types';
+
 /**
  * Breathing animation timing (in milliseconds)
  */
@@ -55,3 +57,62 @@ export const CONTENT = {
     DONE: "I'm done for now",
   },
 } as const;
+
+/**
+ * Mock contributor data for development and testing
+ * In production, this would be replaced with real contributor information
+ */
+export const MOCK_CONTRIBUTORS: Contributor[] = [
+  {
+    id: 'contributor-1',
+    name: 'Sarah',
+    photoPath: '/images/contributors/sarah.svg',
+    messages: [
+      {
+        id: 'msg-1-1',
+        contributorId: 'contributor-1',
+        audioPath: '/audio/messages/sarah-1.mp3',
+        duration: 25,
+      },
+    ],
+  },
+  {
+    id: 'contributor-2',
+    name: 'Alex',
+    photoPath: '/images/contributors/alex.svg',
+    messages: [
+      {
+        id: 'msg-2-1',
+        contributorId: 'contributor-2',
+        audioPath: '/audio/messages/alex-1.mp3',
+        duration: 30,
+      },
+    ],
+  },
+  {
+    id: 'contributor-3',
+    name: 'Mom',
+    photoPath: '/images/contributors/mom.svg',
+    messages: [
+      {
+        id: 'msg-3-1',
+        contributorId: 'contributor-3',
+        audioPath: '/audio/messages/mom-1.mp3',
+        duration: 35,
+      },
+    ],
+  },
+  {
+    id: 'contributor-4',
+    name: 'Jamie',
+    photoPath: '/images/contributors/jamie.svg',
+    messages: [
+      {
+        id: 'msg-4-1',
+        contributorId: 'contributor-4',
+        audioPath: '/audio/messages/jamie-1.mp3',
+        duration: 28,
+      },
+    ],
+  },
+] as const;
