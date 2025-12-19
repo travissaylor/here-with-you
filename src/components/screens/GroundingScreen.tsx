@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import BreathingCircle from '@/components/ui/BreathingCircle';
+import BreathingCircle from '@/components/features/BreathingCircle';
+import { Button } from '../ui/button';
 
 interface GroundingScreenProps {
   onComplete?: () => void;
@@ -36,12 +37,12 @@ export default function GroundingScreen({ onComplete }: GroundingScreenProps) {
 
       {showSkip && (
         <div className="pb-12 text-center">
-          <button
+          <Button
             onClick={handleSkip}
-            className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors text-base font-light"
+            variant="outline"
           >
             Skip
-          </button>
+          </Button>
         </div>
       )}
     </div>

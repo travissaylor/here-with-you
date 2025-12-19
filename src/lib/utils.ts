@@ -2,6 +2,8 @@
  * Utility functions for Here With You
  */
 
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 import type { Message, Contributor } from './types';
 
 /**
@@ -40,8 +42,8 @@ export function formatDuration(seconds: number): string {
 }
 
 /**
- * Classname utility for conditional classes
+ * Classname utility for conditional classes with Tailwind merge
  */
-export function cn(...classes: (string | boolean | undefined | null)[]): string {
-  return classes.filter(Boolean).join(' ');
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
 }

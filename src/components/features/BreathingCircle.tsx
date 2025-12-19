@@ -47,16 +47,11 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
   return (
     <div className="relative flex items-center justify-center w-full min-h-[400px]">
       {!isAnimating ? (
-        // <button
-        //   onClick={handleStart}
-        //   className="px-12 py-5 text-xl font-light text-gray-700 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-all shadow-md hover:shadow-lg active:scale-95"
-        // >
-        //   Start when you&apos;re ready
-        // </button>
         <button
           className="flex justify-center items-center"
           onClick={handleStart}
           style={{
+            padding: '20px',
             color: 'white',
             border: 0,
             width: '150px',
