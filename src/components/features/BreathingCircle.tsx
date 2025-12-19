@@ -45,7 +45,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
   };
 
   return (
-    <div className="relative flex items-center justify-center w-full min-h-400">
+    <div className="relative flex items-center justify-center w-full min-h-100">
       {!isAnimating ? (
         <button
           className="flex justify-center items-center"
