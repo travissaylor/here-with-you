@@ -47,6 +47,7 @@ export default function PlaybackContent() {
       message={result.message}
       contributor={result.contributor}
       onComplete={() => router.push(ROUTES.SOFT_LANDING)}
+      onBack={() => router.push(ROUTES.CHOOSE_SUPPORT)}
     />
   );
 }

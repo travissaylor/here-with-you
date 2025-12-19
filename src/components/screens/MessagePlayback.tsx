@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Play, Pause } from 'lucide-react';
+import { Play, Pause, ArrowLeft } from 'lucide-react';
 import type { Message, Contributor } from '@/lib/types';
 import { CONTENT } from '@/lib/constants';
 import { formatDuration } from '@/lib/utils';
@@ -12,12 +12,14 @@ interface MessagePlaybackProps {
   message: Message;
   contributor: Contributor;
   onComplete?: () => void;
+  onBack?: () => void;
 }
 
 export default function MessagePlayback({
   message,
   contributor,
   onComplete,
+  onBack,
 }: MessagePlaybackProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -138,6 +140,17 @@ export default function MessagePlayback({
         src={message.audioPath}
         preload="auto"
       />
+
+      {/* Back Button */}
+      {onBack && (
+        <button
+          onClick={onBack}
+          className="absolute top-6 left-6 text-gray-600 hover:text-gray-800 transition-colors z-10"
+          aria-label="Go back to choose support"
+        >
+          <ArrowLeft className="w-6 h-6" />
+        </button>
+      )}
 
       {/* Header Section */}
       <div className="pt-16 pb-8 text-center px-6">
