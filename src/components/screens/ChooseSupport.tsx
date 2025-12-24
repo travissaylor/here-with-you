@@ -3,19 +3,21 @@
 import { useState } from 'react';
 import type { Contributor, Message } from '@/lib/types';
 import { CONTENT } from '@/lib/constants';
-import { getRandomMessage, getRandomMessageFromContributor } from '@/lib/utils';
+import { getRandomMessage } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import PersonCard from '@/components/features/PersonCard';
 
 interface ChooseSupportProps {
   contributors: Contributor[];
   onSelectMessage?: (message: Message, contributor: Contributor) => void;
+  onSelectContributor?: (contributor: Contributor) => void;
   onComplete?: () => void;
 }
 
 export default function ChooseSupport({
   contributors,
   onSelectMessage,
+  onSelectContributor,
   onComplete
 }: ChooseSupportProps) {
   const [selectedContributorId, setSelectedContributorId] = useState<string | null>(null);
@@ -33,10 +35,19 @@ export default function ChooseSupport({
   };
 
   const handlePersonSelect = (contributor: Contributor) => {
-    const message = getRandomMessageFromContributor(contributor);
-    if (message && onSelectMessage) {
-      setSelectedContributorId(contributor.id);
-      onSelectMessage(message, contributor);
+    // If contributor has only one message, go directly to playback
+    if (contributor.messages.length === 1) {
+      const message = contributor.messages[0];
+      if (onSelectMessage) {
+        setSelectedContributorId(contributor.id);
+        onSelectMessage(message, contributor);
+      }
+    } else {
+      // If contributor has multiple messages, go to message list
+      if (onSelectContributor) {
+        setSelectedContributorId(contributor.id);
+        onSelectContributor(contributor);
+      }
     }
   };
 

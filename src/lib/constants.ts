@@ -30,6 +30,7 @@ export const ROUTES = {
   HOME: '/',
   GROUNDING: '/grounding',
   CHOOSE_SUPPORT: '/choose-support',
+  MESSAGE_LIST: '/message-list',
   PLAYBACK: '/playback',
   SOFT_LANDING: '/soft-landing',
 } as const;
@@ -53,8 +54,15 @@ export const CONTENT = {
   SOFT_LANDING: {
     TITLE: 'Take one more breath',
     SUBTITLE: "You're not alone",
+    NEXT_MESSAGE: (name: string) => `Next message from ${name}`,
     LISTEN_AGAIN: 'Listen to another message',
     DONE: "I'm done for now",
+  },
+  MESSAGE_LIST: {
+    RANDOM_BUTTON: 'Play one for me',
+    CHOOSE_LABEL: 'Or choose one:',
+    MULTIPLE_MESSAGES: (count: number) => `has ${count} messages for you`,
+    SINGLE_MESSAGE: 'has 1 message for you',
   },
 } as const;
 
@@ -73,6 +81,14 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'travis',
         audioPath: '/audio/messages/travis_test.m4a',
         duration: 5,
+        title: 'You are not alone',
+      },
+      {
+        id: 'travis-test2',
+        contributorId: 'travis',
+        audioPath: '/audio/messages/travis_test.m4a',
+        duration: 5,
+        title: 'When things feel heavy',
       },
     ],
   },
@@ -86,6 +102,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'mom',
         audioPath: '/audio/messages/travis_test.m4a',
         duration: 5,
+        title: 'A gentle reminder',
       },
     ],
   },
@@ -99,6 +116,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'dad',
         audioPath: '/audio/messages/travis_test.m4a',
         duration: 5,
+        title: "You're stronger than you know",
       },
     ],
   },
@@ -112,6 +130,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'elizabeth',
         audioPath: '/audio/messages/travis_test.m4a',
         duration: 5,
+        title: 'For difficult moments',
       },
     ],
   },
@@ -125,6 +144,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'caroline',
         audioPath: '/audio/messages/travis_test.m4a',
         duration: 5,
+        title: 'Breathing through it together',
       },
     ],
   },
@@ -138,6 +158,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: "cheyenne",
         audioPath: "/audio/messages/travis_test.m4a",
         duration: 5,
+        title: 'A reminder you are loved',
       },
     ],
   }

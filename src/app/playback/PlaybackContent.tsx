@@ -39,7 +39,10 @@ export default function PlaybackContent() {
     <MessagePlayback
       message={result.message}
       contributor={result.contributor}
-      onComplete={() => router.push(ROUTES.SOFT_LANDING)}
+      onComplete={() => {
+        const url = `${ROUTES.SOFT_LANDING}?contributor=${contributorId}&message=${messageId}`;
+        router.push(url);
+      }}
       onBack={() => router.push(ROUTES.CHOOSE_SUPPORT)}
     />
   );

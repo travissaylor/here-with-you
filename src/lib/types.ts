@@ -21,6 +21,7 @@ export interface Message {
   contributorId: string;
   audioPath: string; // Path to audio file in /public/audio/messages/
   duration?: number; // Duration in seconds (optional)
+  title: string; // Short message title/theme (2-5 words, calming/supportive tone)
 }
 
 /**

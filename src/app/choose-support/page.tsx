@@ -13,10 +13,16 @@ export default function ChooseSupportPage() {
     router.push(url);
   };
 
+  const handleSelectContributor = (contributor: Contributor) => {
+    const url = `${ROUTES.MESSAGE_LIST}?contributor=${contributor.id}`;
+    router.push(url);
+  };
+
   return (
     <ChooseSupport
       contributors={MOCK_CONTRIBUTORS}
       onSelectMessage={handleSelectMessage}
+      onSelectContributor={handleSelectContributor}
     />
   );
 }

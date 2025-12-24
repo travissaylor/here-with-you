@@ -2,21 +2,26 @@
 
 import Image from 'next/image';
 import { Contributor } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import { cn, hasMultipleMessages } from '@/lib/utils';
 
 interface PersonCardProps {
   contributor: Contributor;
   onClick: () => void;
   isSelected?: boolean;
   disabled?: boolean;
+  showMessageCount?: boolean;
 }
 
 export default function PersonCard({
   contributor,
   onClick,
   isSelected = false,
-  disabled = false
+  disabled = false,
+  showMessageCount = true
 }: PersonCardProps) {
+  const hasMultiple = hasMultipleMessages(contributor);
+  const messageCount = contributor.messages.length;
+
   return (
     <button
       onClick={onClick}
@@ -47,9 +52,22 @@ export default function PersonCard({
           sizes="(max-width: 768px) 96px, 96px"
         />
       </div>
-      <span className="text-base font-medium text-gray-700">
-        {contributor.name}
-      </span>
+      <div className="relative">
+        <span className="text-base font-medium text-gray-700">
+          {contributor.name}
+        </span>
+        {hasMultiple && showMessageCount && (
+          <div
+            className="absolute -right-6 top-1/2 -translate-y-1/2 flex gap-0.5 opacity-0 group-hover:opacity-70 group-focus:opacity-70 transition-opacity duration-300"
+            aria-label={`${messageCount} messages`}
+            title={`${messageCount} messages`}
+          >
+            {Array.from({ length: Math.min(messageCount, 3) }).map((_, i) => (
+              <div key={i} className="w-1 h-1 rounded-full bg-purple-400" />
+            ))}
+          </div>
+        )}
+      </div>
     </button>
   );
 }
