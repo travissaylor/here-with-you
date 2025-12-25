@@ -40,7 +40,7 @@ export default function MessageListScreen({
     : CONTENT.MESSAGE_LIST.MULTIPLE_MESSAGES(messageCount);
 
   return (
-    <div className="relative flex flex-col min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
+    <div className="relative flex flex-col min-h-dvh bg-blue-50">
       {/* Back Button */}
       <button
         onClick={onBack}

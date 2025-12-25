@@ -29,7 +29,7 @@ export default function PlaybackContent() {
 
   if (!result) {
     return (
-      <div className="flex items-center justify-center min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
+      <div className="flex items-center justify-center min-h-dvh bg-blue-50">
         <p className="text-gray-600">Message not found. Redirecting...</p>
       </div>
     );

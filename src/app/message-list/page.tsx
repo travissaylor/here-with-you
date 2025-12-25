@@ -16,7 +16,7 @@ function MessageListContent() {
   // Handle missing contributor
   if (!contributor) {
     return (
-      <div className="flex items-center justify-center min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
+      <div className="flex items-center justify-center min-h-dvh bg-blue-50">
         <div className="text-center">
           <p className="text-gray-600 mb-4">Contributor not found</p>
           <button

@@ -25,7 +25,7 @@ export default function GroundingScreen({ onComplete }: GroundingScreenProps) {
   };
 
   return (
-    <div className="relative flex flex-col min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
+    <div className="relative flex flex-col min-h-dvh bg-blue-50">
       <div className="pt-16 pb-8 text-center px-6">
         <h1 className="text-2xl font-light text-gray-700">
           {CONTENT.GROUNDING.TITLE}

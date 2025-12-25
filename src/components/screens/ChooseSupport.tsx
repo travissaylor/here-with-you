@@ -54,7 +54,7 @@ export default function ChooseSupport({
   // Handle edge case: no contributors
   if (contributors.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50 px-6">
+      <div className="flex items-center justify-center min-h-dvh bg-blue-50 px-6">
         <div className="text-center">
           <p className="text-xl text-gray-600">No messages available right now.</p>
         </div>
@@ -63,7 +63,7 @@ export default function ChooseSupport({
   }
 
   return (
-    <div className="relative flex flex-col min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
+    <div className="relative flex flex-col min-h-dvh bg-blue-50">
       {/* Header Section */}
       <div className="pt-16 pb-8 text-center px-6">
         <h1 className="text-2xl font-light text-gray-700 mb-2">
