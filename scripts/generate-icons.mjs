@@ -18,7 +18,7 @@ async function generateIcons() {
   for (const size of sizes) {
     const fileName =
       size === 180
-        ? `apple-touch-icon-${size}x${size}.png`
+        ? `apple-touch-icon-v1-${size}x${size}.png`
         : `icon-${size}x${size}.png`;
 
     await sharp(svgBuffer)
