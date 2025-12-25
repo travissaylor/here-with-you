@@ -67,7 +67,7 @@ body {
     transform: scale(0.75);
     opacity: 0.6;
   }
-  40% {
+  43% {
     transform: scale(1.4);
     opacity: 0.8;
   }
@@ -78,7 +78,7 @@ body {
 }
 
 .breathing-circle {
-  animation: breathe 10s ease-in-out infinite;
+  animation: breathe 7s ease-in-out infinite;
 }
 
 @keyframes gentle-glow {
