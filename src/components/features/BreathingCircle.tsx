@@ -71,7 +71,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
                   width: '170px',
                   height: '170px',
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(96, 165, 250, 0.6) 0%, rgba(167, 139, 250, 0.4) 60%, transparent 100%)',
+                  background: 'radial-gradient(circle, rgba(196, 181, 253, 0.6) 0%, rgba(167, 139, 250, 0.4) 60%, transparent 100%)',
                 }}
               />
             </motion.div>
@@ -87,7 +87,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
               width: '150px',
               height: '150px',
               borderRadius: '50%',
-              background: 'linear-gradient(to bottom right, #60a5fa, #a78bfa)',
+              background: 'linear-gradient(to bottom right, #C4B5FD, #A78BFA)',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
               zIndex: 10,
             }}
@@ -104,7 +104,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
             width: '200px',
             height: '200px',
             borderRadius: '50%',
-            background: 'linear-gradient(to bottom right, #60a5fa, #a78bfa)',
+            background: 'linear-gradient(to bottom right, #C4B5FD, #A78BFA)',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           }}
         />
