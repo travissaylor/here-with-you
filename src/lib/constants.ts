@@ -40,7 +40,7 @@ export const ROUTES = {
 export const CONTENT = {
   GROUNDING: {
     TITLE: "Let's slow things down together",
-    START_BUTTON: "Start When You're Ready",
+    START_BUTTON: "Breathe",
   },
   CHOOSE_SUPPORT: {
     TITLE: 'Who would you like support from right now?',

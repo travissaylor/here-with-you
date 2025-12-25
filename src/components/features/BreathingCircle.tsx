@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CONTENT } from '@/lib/constants';
+import { BREATH_TIMING, CONTENT } from '@/lib/constants';
 
 interface BreathingCircleProps {
   onComplete?: () => void;
@@ -13,9 +13,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentCycle, setCurrentCycle] = useState(0);
 
-  const INHALE_DURATION = 4000;
-  const EXHALE_DURATION = 6000;
-  const CYCLE_DURATION = INHALE_DURATION + EXHALE_DURATION;
+  const CYCLE_DURATION = BREATH_TIMING.INHALE_DURATION + BREATH_TIMING.EXHALE_DURATION;
 
   useEffect(() => {
     if (!isAnimating) return;
@@ -81,7 +79,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
 
           {/* Existing button */}
           <button
-            className="flex justify-center items-center relative"
+            className="flex justify-center items-center relative cursor-pointer"
             style={{
               padding: '20px',
               color: 'white',
