@@ -1,10 +1,11 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import GroundingScreen from '@/components/screens/GroundingScreen';
 import { ROUTES } from '@/lib/constants';
 
-export default function GroundingPage() {
+function GroundingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -15,4 +16,12 @@ export default function GroundingPage() {
   };
 
   return <GroundingScreen onComplete={handleComplete} />;
+}
+
+export default function GroundingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <GroundingContent />
+    </Suspense>
+  );
 }
