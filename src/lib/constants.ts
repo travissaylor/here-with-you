@@ -9,8 +9,8 @@ import type { Contributor } from './types';
  * Breathing animation timing (in milliseconds)
  */
 export const BREATH_TIMING = {
-  INHALE_DURATION: 4000, // 4 seconds
-  EXHALE_DURATION: 6000, // 6 seconds
+  INHALE_DURATION: 3000, // 3 seconds
+  EXHALE_DURATION: 4000, // 4 seconds
   TOTAL_CYCLES: 3, // Number of complete breath cycles
 } as const;
 
