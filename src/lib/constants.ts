@@ -49,7 +49,7 @@ export const CONTENT = {
   },
   PLAYBACK: {
     TITLE: 'Someone who loves you wanted you to hear this',
-    GROUNDING_TITLE: 'Take one more breath',
+    GROUNDING_TITLE: "Take this moment for yourself",
     GROUNDING_SUBTITLE: "You're not alone",
   },
   MESSAGE_LIST: {
