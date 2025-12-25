@@ -186,7 +186,7 @@ export default function MessagePlayback({
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="relative flex flex-col min-h-screen bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
+    <div className="relative flex flex-col min-h-dvh bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
       {/* Audio element */}
       <audio
         ref={audioRef}
