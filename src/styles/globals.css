@@ -81,6 +81,29 @@ body {
   animation: breathe 10s ease-in-out infinite;
 }
 
+@keyframes gentle-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+.breathing-glow {
+  animation: gentle-glow 3s ease-in-out infinite;
+  filter: blur(15px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breathing-glow {
+    animation: none;
+    opacity: 0.4;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
