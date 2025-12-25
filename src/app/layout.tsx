@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Here With You',
   description:
     'A calming, mobile-first web application for emotional support through voice messages from loved ones',
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export const viewport: Viewport = {
