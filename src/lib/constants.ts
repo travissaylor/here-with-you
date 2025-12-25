@@ -32,7 +32,6 @@ export const ROUTES = {
   CHOOSE_SUPPORT: '/choose-support',
   MESSAGE_LIST: '/message-list',
   PLAYBACK: '/playback',
-  SOFT_LANDING: '/soft-landing',
 } as const;
 
 /**
@@ -50,13 +49,8 @@ export const CONTENT = {
   },
   PLAYBACK: {
     TITLE: 'Someone who loves you wanted you to hear this',
-  },
-  SOFT_LANDING: {
-    TITLE: 'Take one more breath',
-    SUBTITLE: "You're not alone",
-    NEXT_MESSAGE: (name: string) => `Next message from ${name}`,
-    LISTEN_AGAIN: 'Listen to another message',
-    DONE: "I'm done for now",
+    GROUNDING_TITLE: 'Take one more breath',
+    GROUNDING_SUBTITLE: "You're not alone",
   },
   MESSAGE_LIST: {
     RANDOM_BUTTON: 'Play one for me',

@@ -3,16 +3,32 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Play, Pause, ArrowLeft } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Message, Contributor } from '@/lib/types';
-import { CONTENT } from '@/lib/constants';
+import { CONTENT, ANIMATION } from '@/lib/constants';
 import { formatDuration } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+
+const groundingContentVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const }
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 0.3 }
+  }
+} as const;
 
 interface MessagePlaybackProps {
   message: Message;
   contributor: Contributor;
-  onComplete?: () => void;
+  onComplete?: () => void; // Keep for backwards compatibility but won't use
   onBack?: () => void;
+  onNextMessage?: () => void;
+  hasMultipleMessages?: boolean;
 }
 
 export default function MessagePlayback({
@@ -20,6 +36,8 @@ export default function MessagePlayback({
   contributor,
   onComplete,
   onBack,
+  onNextMessage,
+  hasMultipleMessages,
 }: MessagePlaybackProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -28,6 +46,22 @@ export default function MessagePlayback({
   const [duration, setDuration] = useState(message.duration || 0);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [showGroundingContent, setShowGroundingContent] = useState(false);
+
+  // Reset state when message changes (for "Next message" navigation)
+  useEffect(() => {
+    setShowGroundingContent(false);
+    setIsLoading(true);
+    setHasError(false);
+    setCurrentTime(0);
+    setIsPlaying(false);
+
+    // Reload the audio element to trigger loadedmetadata event
+    const audio = audioRef.current;
+    if (audio) {
+      audio.load();
+    }
+  }, [message.id]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -50,12 +84,9 @@ export default function MessagePlayback({
 
     const handleEnded = () => {
       setIsPlaying(false);
-      // Auto-advance to soft landing after a brief moment
-      if (onComplete) {
-        setTimeout(() => {
-          onComplete();
-        }, 1000);
-      }
+      setTimeout(() => {
+        setShowGroundingContent(true);
+      }, 500);
     };
 
     const handleError = () => {
@@ -100,6 +131,28 @@ export default function MessagePlayback({
         setHasError(true);
       });
     }
+  };
+
+  const handleReplay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    setShowGroundingContent(false);
+    setTimeout(() => {
+      audio.currentTime = 0;
+      audio.play().catch((error) => {
+        console.error('Error replaying audio:', error);
+        setHasError(true);
+      });
+    }, ANIMATION.FADE_DURATION);
+  };
+
+  const handleNextMessage = () => {
+    if (!onNextMessage) return;
+    setShowGroundingContent(false);
+    setTimeout(() => {
+      onNextMessage();
+    }, ANIMATION.FADE_DURATION);
   };
 
   const handleProgressBarClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -202,67 +255,121 @@ export default function MessagePlayback({
           </div>
         )}
 
-        {/* Audio Controls */}
+        {/* Audio Controls or Grounding Content */}
         {!isLoading && !hasError && (
           <div className="w-full max-w-sm">
-            {/* Play/Pause Button */}
-            <div className="flex justify-center mb-6">
-              <button
-                onClick={togglePlayPause}
-                className="w-20 h-20 rounded-full bg-gray-700 hover:bg-gray-800 transition-colors flex items-center justify-center shadow-lg"
-                aria-label={isPlaying ? 'Pause' : 'Play'}
-              >
-                {isPlaying ? (
-                  <Pause className="w-8 h-8 text-white" fill="white" />
-                ) : (
-                  <Play className="w-8 h-8 text-white ml-1" fill="white" />
-                )}
-              </button>
-            </div>
+            <AnimatePresence mode="wait">
+              {!showGroundingContent ? (
+                <motion.div
+                  key="audio-controls"
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Play/Pause Button */}
+                  <div className="flex justify-center mb-6">
+                    <button
+                      onClick={togglePlayPause}
+                      className="w-20 h-20 rounded-full bg-gray-700 hover:bg-gray-800 transition-colors flex items-center justify-center shadow-lg"
+                      aria-label={isPlaying ? 'Pause' : 'Play'}
+                    >
+                      {isPlaying ? (
+                        <Pause className="w-8 h-8 text-white" fill="white" />
+                      ) : (
+                        <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                      )}
+                    </button>
+                  </div>
 
-            {/* Progress Bar */}
-            <div className="mb-3">
-              <div
-                ref={progressBarRef}
-                className="w-full h-3 bg-gray-300 rounded-full overflow-hidden cursor-pointer hover:bg-gray-400 transition-colors"
-                onClick={handleProgressBarClick}
-                onTouchStart={handleProgressBarTouch}
-                onTouchMove={handleProgressBarTouch}
-                role="slider"
-                aria-label="Audio progress"
-                aria-valuemin={0}
-                aria-valuemax={duration}
-                aria-valuenow={currentTime}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  const audio = audioRef.current;
-                  if (!audio) return;
+                  {/* Progress Bar */}
+                  <div className="mb-3">
+                    <div
+                      ref={progressBarRef}
+                      className="w-full h-3 bg-gray-300 rounded-full overflow-hidden cursor-pointer hover:bg-gray-400 transition-colors"
+                      onClick={handleProgressBarClick}
+                      onTouchStart={handleProgressBarTouch}
+                      onTouchMove={handleProgressBarTouch}
+                      role="slider"
+                      aria-label="Audio progress"
+                      aria-valuemin={0}
+                      aria-valuemax={duration}
+                      aria-valuenow={currentTime}
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        const audio = audioRef.current;
+                        if (!audio) return;
 
-                  if (e.key === 'ArrowLeft') {
-                    audio.currentTime = Math.max(0, currentTime - 5);
-                  } else if (e.key === 'ArrowRight') {
-                    audio.currentTime = Math.min(duration, currentTime + 5);
-                  }
-                }}
-              >
-                <div
-                  className="h-full bg-gray-700 transition-all duration-100"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-            </div>
+                        if (e.key === 'ArrowLeft') {
+                          audio.currentTime = Math.max(0, currentTime - 5);
+                        } else if (e.key === 'ArrowRight') {
+                          audio.currentTime = Math.min(duration, currentTime + 5);
+                        }
+                      }}
+                    >
+                      <div
+                        className="h-full bg-gray-700 transition-all duration-100"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  </div>
 
-            {/* Time Display */}
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>{formatDuration(currentTime)}</span>
-              <span>{formatDuration(duration)}</span>
-            </div>
+                  {/* Time Display */}
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>{formatDuration(currentTime)}</span>
+                    <span>{formatDuration(duration)}</span>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="grounding-content"
+                  variants={groundingContentVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="text-center"
+                >
+                  {/* Grounding Words */}
+                  <div className="mb-8">
+                    <h2 className="text-3xl font-light text-gray-700 mb-3">
+                      {CONTENT.PLAYBACK.GROUNDING_TITLE}
+                    </h2>
+                    <p className="text-xl text-gray-600">
+                      {CONTENT.PLAYBACK.GROUNDING_SUBTITLE}
+                    </p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col gap-3 w-full">
+                    {/* Next Message Button - Only show if contributor has multiple messages */}
+                    {hasMultipleMessages && (
+                      <Button
+                        onClick={handleNextMessage}
+                        size="lg"
+                        className="w-full"
+                      >
+                        Next message from {contributor.name}
+                      </Button>
+                    )}
+
+                    {/* Replay Button */}
+                    <Button
+                      onClick={handleReplay}
+                      size="lg"
+                      className="w-full"
+                      variant={hasMultipleMessages ? "outline" : "default"}
+                    >
+                      Replay this message
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )}
       </div>
 
       {/* Bottom spacer */}
-      <div className="pb-12" />
+      <div className="pb-16" />
     </div>
   );
 }

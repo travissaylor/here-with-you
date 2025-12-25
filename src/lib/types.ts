@@ -27,4 +27,4 @@ export interface Message {
 /**
  * Screen flow states for the application
  */
-export type ScreenState = 'grounding' | 'choose-support' | 'playback' | 'soft-landing';
+export type ScreenState = 'grounding' | 'choose-support' | 'message-list' | 'playback';

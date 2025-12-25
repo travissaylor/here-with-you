@@ -35,15 +35,45 @@ export default function PlaybackContent() {
     );
   }
 
+  const handleNextMessage = () => {
+    if (!result) return;
+
+    const { contributor, message } = result;
+    const currentIndex = contributor.messages.findIndex(m => m.id === message.id);
+
+    if (currentIndex < contributor.messages.length - 1) {
+      const nextMessage = contributor.messages[currentIndex + 1];
+      const url = `${ROUTES.PLAYBACK}?contributor=${contributor.id}&message=${nextMessage.id}`;
+      router.push(url);
+    }
+  };
+
+  const handleBack = () => {
+    if (!result) return;
+
+    const { contributor } = result;
+
+    // If contributor has multiple messages, go to message list
+    if (contributor.messages.length > 1) {
+      const url = `${ROUTES.MESSAGE_LIST}?contributor=${contributor.id}`;
+      router.push(url);
+    } else {
+      // Otherwise go to choose support
+      router.push(ROUTES.CHOOSE_SUPPORT);
+    }
+  };
+
+  // Only show "Next message" button if there are more messages AND we're not on the last one
+  const currentIndex = result ? result.contributor.messages.findIndex(m => m.id === result.message.id) : -1;
+  const hasNextMessage = result ? currentIndex < result.contributor.messages.length - 1 : false;
+
   return (
     <MessagePlayback
       message={result.message}
       contributor={result.contributor}
-      onComplete={() => {
-        const url = `${ROUTES.SOFT_LANDING}?contributor=${contributorId}&message=${messageId}`;
-        router.push(url);
-      }}
-      onBack={() => router.push(ROUTES.CHOOSE_SUPPORT)}
+      onBack={handleBack}
+      onNextMessage={handleNextMessage}
+      hasMultipleMessages={hasNextMessage}
     />
   );
 }
