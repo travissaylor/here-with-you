@@ -5,9 +5,24 @@ export const metadata: Metadata = {
   title: 'Here With You',
   description:
     'A calming, mobile-first web application for emotional support through voice messages from loved ones',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Here With You',
+  },
   icons: {
-    icon: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      {
+        url: '/icons/apple-touch-icon-180x180.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
   },
 };
 
@@ -15,6 +30,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  userScalable: false,
+  themeColor: '#9C27B0',
 };
 
 export default function RootLayout({
