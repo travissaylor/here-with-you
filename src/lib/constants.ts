@@ -28,7 +28,6 @@ export const ANIMATION = {
  */
 export const ROUTES = {
   HOME: '/',
-  GROUNDING: '/grounding',
   CHOOSE_SUPPORT: '/choose-support',
   MESSAGE_LIST: '/message-list',
   PLAYBACK: '/playback',

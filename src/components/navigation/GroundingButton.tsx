@@ -1,14 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { ROUTES } from '@/lib/constants'
 
 export function GroundingButton() {
   const router = useRouter()
+  const pathname = usePathname()
 
   const handleClick = () => {
-    router.push(`${ROUTES.GROUNDING}?returnTo=${ROUTES.CHOOSE_SUPPORT}`)
+    router.push(`${ROUTES.HOME}?returnTo=${pathname}`)
   }
 
   return (

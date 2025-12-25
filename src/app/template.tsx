@@ -8,8 +8,8 @@ import { ROUTES } from '@/lib/constants';
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  // Show GroundingButton on all pages except home and grounding
-  const showGroundingButton = pathname !== ROUTES.HOME && pathname !== ROUTES.GROUNDING;
+  // Show GroundingButton on all pages except home (which is now the grounding page)
+  const showGroundingButton = pathname !== ROUTES.HOME;
 
   return (
     <motion.div

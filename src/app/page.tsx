@@ -1,15 +1,27 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import GroundingScreen from '@/components/screens/GroundingScreen';
 import { ROUTES } from '@/lib/constants';
 
-export default function Home() {
+function GroundingContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  useEffect(() => {
-    router.replace(ROUTES.GROUNDING);
-  }, [router]);
+  const returnTo = searchParams.get('returnTo') || ROUTES.CHOOSE_SUPPORT;
 
-  return null;
+  const handleComplete = () => {
+    router.push(returnTo);
+  };
+
+  return <GroundingScreen onComplete={handleComplete} />;
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <GroundingContent />
+    </Suspense>
+  );
 }
