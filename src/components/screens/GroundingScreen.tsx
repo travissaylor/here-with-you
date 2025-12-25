@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import BreathingCircle from '@/components/features/BreathingCircle';
 import { Button } from '../ui/button';
+import { CONTENT } from '@/lib/constants';
 
 interface GroundingScreenProps {
   onComplete?: () => void;
@@ -27,7 +28,7 @@ export default function GroundingScreen({ onComplete }: GroundingScreenProps) {
     <div className="relative flex flex-col min-h-screen bg-gradient-to-b from-blue-50 via-purple-50 to-pink-50">
       <div className="pt-16 pb-8 text-center px-6">
         <h1 className="text-2xl font-light text-gray-700">
-          Let&apos;s slow things down together
+          {CONTENT.GROUNDING.TITLE}
         </h1>
       </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { CONTENT } from '@/lib/constants';
 
 interface BreathingCircleProps {
   onComplete?: () => void;
@@ -61,7 +62,7 @@ export default function BreathingCircle({ onComplete, cycles = 3 }: BreathingCir
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           }}
         >
-          Start When You&apos;re Ready
+          {CONTENT.GROUNDING.START_BUTTON}
         </button>
       ) : (
         <div
