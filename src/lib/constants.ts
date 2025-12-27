@@ -39,7 +39,7 @@ export const ROUTES = {
 export const CONTENT = {
   GROUNDING: {
     TITLE: "Let's slow things down together",
-    START_BUTTON: "Breathe",
+    START_BUTTON: 'Breathe',
   },
   CHOOSE_SUPPORT: {
     TITLE: 'Who would you like support from right now?',
@@ -48,7 +48,7 @@ export const CONTENT = {
   },
   PLAYBACK: {
     TITLE: 'Someone who loves you wanted you to hear this',
-    GROUNDING_TITLE: "Take this moment for yourself",
+    GROUNDING_TITLE: 'Take this moment for yourself',
     GROUNDING_SUBTITLE: "You're not alone",
   },
   MESSAGE_LIST: {
@@ -70,18 +70,11 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
     photoPath: '/images/contributors/travis.svg',
     messages: [
       {
-        id: 'travis-test',
+        id: 'travis1',
         contributorId: 'travis',
-        audioPath: '/audio/messages/travis_test.m4a',
+        audioPath: '/audio/messages/travis1.m4a',
         duration: 5,
         title: 'You are not alone',
-      },
-      {
-        id: 'travis-test2',
-        contributorId: 'travis',
-        audioPath: '/audio/messages/travis_test.m4a',
-        duration: 5,
-        title: 'When things feel heavy',
       },
     ],
   },
@@ -103,22 +96,14 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         audioPath: '/audio/messages/mom2.m4a',
         duration: 30,
         title: 'You are so loved',
-      }
+      },
     ],
   },
   {
     id: 'dad',
     name: 'Dad',
     photoPath: '/images/contributors/dad.svg',
-    messages: [
-      {
-        id: 'dad1',
-        contributorId: 'dad',
-        audioPath: '/audio/messages/travis_test.m4a',
-        duration: 5,
-        title: "You're stronger than you know",
-      },
-    ],
+    messages: [],
   },
   {
     id: 'elizabeth',
@@ -149,17 +134,9 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
     ],
   },
   {
-    id: "cheyenne",
-    name: "Cheyenne",
-    photoPath: "/images/contributors/cheyenne.svg",
-    messages: [
-      {
-        id: "cheyenne-test",
-        contributorId: "cheyenne",
-        audioPath: "/audio/messages/travis_test.m4a",
-        duration: 5,
-        title: 'A reminder you are loved',
-      },
-    ],
-  }
+    id: 'cheyenne',
+    name: 'Cheyenne',
+    photoPath: '/images/contributors/cheyenne.svg',
+    messages: [],
+  },
 ] as const;
