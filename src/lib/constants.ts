@@ -91,12 +91,19 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
     photoPath: '/images/contributors/mom.svg',
     messages: [
       {
-        id: 'mom-test',
+        id: 'mom1',
         contributorId: 'mom',
-        audioPath: '/audio/messages/travis_test.m4a',
-        duration: 5,
+        audioPath: '/audio/messages/mom1.m4a',
+        duration: 32,
         title: 'A gentle reminder',
       },
+      {
+        id: 'mom2',
+        contributorId: 'mom',
+        audioPath: '/audio/messages/mom2.m4a',
+        duration: 30,
+        title: 'You are so loved',
+      }
     ],
   },
   {
@@ -105,7 +112,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
     photoPath: '/images/contributors/dad.svg',
     messages: [
       {
-        id: 'dad-test',
+        id: 'dad1',
         contributorId: 'dad',
         audioPath: '/audio/messages/travis_test.m4a',
         duration: 5,
@@ -119,10 +126,10 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
     photoPath: '/images/contributors/elizabeth.svg',
     messages: [
       {
-        id: 'elizabeth-test',
+        id: 'elizabeth1',
         contributorId: 'elizabeth',
-        audioPath: '/audio/messages/travis_test.m4a',
-        duration: 5,
+        audioPath: '/audio/messages/elizabeth.m4a',
+        duration: 31,
         title: 'For difficult moments',
       },
     ],
@@ -133,11 +140,11 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
     photoPath: '/images/contributors/caroline.svg',
     messages: [
       {
-        id: 'caroline-test',
+        id: 'caroline1',
         contributorId: 'caroline',
-        audioPath: '/audio/messages/travis_test.m4a',
-        duration: 5,
-        title: 'Breathing through it together',
+        audioPath: '/audio/messages/caroline.m4a',
+        duration: 23,
+        title: 'A setback is a setup for a comeback',
       },
     ],
   },
