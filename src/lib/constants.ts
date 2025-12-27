@@ -57,6 +57,9 @@ export const CONTENT = {
     MULTIPLE_MESSAGES: (count: number) => `has ${count} messages for you`,
     SINGLE_MESSAGE: 'has 1 message for you',
   },
+  COMING_SOON: {
+    BADGE_TEXT: 'Coming Soon',
+  },
 } as const;
 
 /**
@@ -88,14 +91,14 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'mom',
         audioPath: '/audio/messages/mom1.m4a',
         duration: 32,
-        title: 'A gentle reminder',
+        title: "You've got this ",
       },
       {
         id: 'mom2',
         contributorId: 'mom',
         audioPath: '/audio/messages/mom2.m4a',
         duration: 30,
-        title: 'You are so loved',
+        title: 'We are so proud of you',
       },
     ],
   },
@@ -115,7 +118,7 @@ export const MOCK_CONTRIBUTORS: Contributor[] = [
         contributorId: 'elizabeth',
         audioPath: '/audio/messages/elizabeth.m4a',
         duration: 31,
-        title: 'For difficult moments',
+        title: 'I love you girl',
       },
     ],
   },

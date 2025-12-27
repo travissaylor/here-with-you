@@ -35,6 +35,11 @@ export default function ChooseSupport({
   };
 
   const handlePersonSelect = (contributor: Contributor) => {
+    // Don't allow selection of contributors with no messages
+    if (contributor.messages.length === 0) {
+      return;
+    }
+
     // If contributor has only one message, go directly to playback
     if (contributor.messages.length === 1) {
       const message = contributor.messages[0];
@@ -96,6 +101,7 @@ export default function ChooseSupport({
                 contributor={contributor}
                 onClick={() => handlePersonSelect(contributor)}
                 isSelected={selectedContributorId === contributor.id}
+                disabled={contributor.messages.length === 0}
               />
             ))}
           </div>
